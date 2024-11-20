@@ -11,7 +11,7 @@ const Navbar = () => {
             <li><NavLink to='/start_learning'>Start Learning</NavLink></li>
             <li><NavLink to='/tutorials'>Tutorials</NavLink></li>
             <li><NavLink to='/aboutus'>About Us</NavLink></li>
-            {user && <li><NavLink to='/my-profile'>My Profile</NavLink></li>}
+            {user && <li><NavLink to='/myprofile'>My Profile</NavLink></li>}
         </>
     );
 

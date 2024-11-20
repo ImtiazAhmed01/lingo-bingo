@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom'; // Properly imported Link
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/authProvider';
 
 const Login = () => {
     const { signInUser } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -13,11 +14,13 @@ const Login = () => {
         console.log(email, password);
         signInUser(email, password)
             .then(result => {
-                console.log(result.user)
+                console.log(result.user);
+
+                navigate('/');
             })
             .catch(error => {
-                console.log('ERROR', error.message)
-            })
+                console.log('ERROR', error.message);
+            });
     };
 
     const togglePasswordVisibility = () => {
@@ -84,7 +87,9 @@ const Login = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-success">Login</button>
+                                <button type="submit" className="btn btn-success">
+                                    Login
+                                </button>
                             </div>
                             <div className="form-control mt-6">
                                 <h3 className="text-xl">

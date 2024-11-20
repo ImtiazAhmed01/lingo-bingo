@@ -79,6 +79,7 @@ import Tutorials1 from './Components/Tutorials1';
 import AboutUs from './Components/About Us/AboutUs';
 import Root from './Components/Root';
 import AuthProvider from './Components/Provider/authProvider';
+import MyProfile from './Components/MyProfile';
 
 
 const router = createBrowserRouter([
@@ -110,6 +111,10 @@ const router = createBrowserRouter([
         path: "aboutus",
         element: <AboutUs />,
       },
+      {
+        path: '/myprofile',
+        element: <MyProfile></MyProfile>
+      }
     ],
   },
 ]);
