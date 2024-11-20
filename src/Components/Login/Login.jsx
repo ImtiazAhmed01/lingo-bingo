@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom'; // Properly imported Link
+import { AuthContext } from '../Provider/authProvider';
 
 const Login = () => {
+    const { signInUser } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
 
     const handleLogin = (e) => {
@@ -9,6 +11,13 @@ const Login = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log(email, password);
+        signInUser(email, password)
+            .then(result => {
+                console.log(result.user)
+            })
+            .catch(error => {
+                console.log('ERROR', error.message)
+            })
     };
 
     const togglePasswordVisibility = () => {
