@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/authProvider';
-
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const handleRegister = e => {
         e.preventDefault();
         const fname = e.target.fname.value;
@@ -14,60 +15,60 @@ const Register = () => {
         const imageURL = e.target.imageURL.value;
         console.log(email, password, fname, lname, imageURL);
 
-        createUser(email, password)
+        createUser(email, password, { displayName: `${fname} ${lname}`, photoURL: imageURL })
             .then(result => {
                 console.log(result.user);
+                // Redirect to homepage after successful registration
+                navigate('/');
             })
             .catch(error => {
-                console.log("ERROR", error.message)
-            })
+                console.log("ERROR", error.message);
+            });
     }
+
     const [showPassword, setShowPassword] = useState(false);
-
-
 
     const togglePasswordVisibility = () => {
         setShowPassword((prevState) => !prevState);
     };
+
     return (
         <div>
-            <form onSubmit={handleRegister} class="w-full max-w-lg mx-auto my-7">
-                <div class="flex flex-wrap -mx-3 mb-6">
+            <form onSubmit={handleRegister} className="w-full max-w-lg mx-auto my-7">
+                <div className="flex flex-wrap -mx-3 mb-6">
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold mb-5 ml-2">Register here!</h1>
                     </div>
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
                             First Name
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" name='fname' placeholder="Your first name" />
-                        <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" name="fname" placeholder="Your first name" />
+                        <p className="text-red-500 text-xs italic">Please fill out this field.</p>
                     </div>
-                    <div class="w-full md:w-1/2 px-3">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                    <div className="w-full md:w-1/2 px-3">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
                             Last Name
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" name='lname' placeholder="Doe" />
+                        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" name="lname" placeholder="Doe" />
                     </div>
                 </div>
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full px-3">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                <div className="flex flex-wrap -mx-3 mb-6">
+                    <div className="w-full px-3">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
                             Email
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="" type="Email" name='email' placeholder="Enter your email" />
-
+                        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="" type="email" name="email" placeholder="Enter your email" />
                     </div>
-                    <div class="w-full px-3">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                    <div className="w-full px-3">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
                             Image URL
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="" type="" name='imageURL' placeholder="Enter your image url" />
-
+                        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="" type="text" name="imageURL" placeholder="Enter your image url" />
                     </div>
-                    <div className=" text-gray-700 text-xs  ml-3">
+                    <div className=" text-gray-700 text-xs ml-3">
                         <label className="label">
-                            <span className="block uppercase tracking-wide text-gray-700 text-xs font-bold ">Password</span>
+                            <span className="block uppercase tracking-wide text-gray-700 text-xs font-bold">Password</span>
                         </label>
                         <div className="relative">
                             <input
@@ -111,7 +112,6 @@ const Register = () => {
                 </div>
                 <button className="btn btn-outline btn-success">Register Now</button>
             </form>
-
         </div>
     );
 };

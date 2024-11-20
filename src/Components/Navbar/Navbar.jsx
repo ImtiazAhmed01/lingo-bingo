@@ -54,7 +54,14 @@ const Navbar = () => {
                     )}
                     <ul className="menu menu-horizontal px-1 gap-4">
                         {user ? (
-                            <button className="btn btn-error" onClick={handleLogout}>Log Out</button>
+                            <>
+                                <span className="text-sm font-medium">
+                                    {user.displayName || user.email}
+                                </span>
+                                <button className="btn btn-error" onClick={handleLogout}>
+                                    Log Out
+                                </button>
+                            </>
                         ) : (
                             <>
                                 <li className="list-none"><NavLink to='/register'>Sign Up</NavLink></li>
