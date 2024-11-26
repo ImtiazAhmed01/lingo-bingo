@@ -80,16 +80,18 @@ import AboutUs from './Components/About Us/AboutUs';
 import Root from './Components/Root';
 import AuthProvider from './Components/Provider/authProvider';
 import MyProfile from './Components/MyProfile';
+import LetsLearn from './Components/LearningAll/Lessons';
+import Lessons from './Components/LearningAll/Lessons';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />, // Ensure Root is used as a React element
+    element: <Root />,
     children: [
       {
         path: "/",
-        element: <Home />, // Use JSX for child elements
+        element: <Home />,
       },
       {
         path: "login",
@@ -100,12 +102,16 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "start_learning", // Fixed typo in the path
+        path: "start_learning",
         element: <StartLearning />,
       },
       {
         path: "tutorials",
         element: <Tutorials1 />,
+      },
+      {
+        path: "lessons",
+        element: <Lessons></Lessons>,
       },
       {
         path: "aboutus",
