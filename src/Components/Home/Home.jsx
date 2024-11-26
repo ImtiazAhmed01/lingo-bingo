@@ -52,6 +52,10 @@
 
 
 import React from 'react';
+import { Link } from 'react-router-dom';
+import SuccessSection from './SuccessSection';
+import WhyChooseUs from './WhyChooseUs';
+import LearnersReview from './LearnersReview';
 
 // const carouselImageStyle = {
 //     width: '100%',
@@ -124,13 +128,14 @@ const Home = () => {
                     {/* Slide 1 */}
                     <div className="carousel-item relative w-full" id="slide1">
                         <img
-                            src='../../../src/images/images.jfif'
+                            src='../../../src/images/images.jpeg'
                             className="w-full h-96 object-cover"
                             alt="Slide 1"
                         />
                         <div
-                            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-white text-2xl font-bold">
-                            Welcome to the Journey
+                            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-white ">
+                            <h1 className='text-3xl font-bold'>Welcome to the Lingo-Bingo</h1>
+                            <p className='text-xl'>A multi-landuage learning online platform</p>
                         </div>
                         <div
                             className="absolute top-5 bottom-5 left-1/2 flex -translate-x-1/2 transform flex-col justify-between z-20">
@@ -140,7 +145,7 @@ const Home = () => {
                     </div>
 
                     {/* Slide 2 */}
-                    <div className="carousel-item relative w-full" id="slide3">
+                    <div className="carousel-item relative w-full" id="slide2">
                         <img
                             src='../../../src/images/istockphoto-965099436-612x612.jpg'
                             className="w-full h-96 object-cover"
@@ -153,32 +158,38 @@ const Home = () => {
                         </div>
                         <div
                             className="absolute top-5 bottom-5 left-1/2 flex -translate-x-1/2 transform flex-col justify-between z-20">
-                            <a href="#slide2" className="btn btn-circle -rotate-90">❯</a>
-                            <a href="#slide4" className="btn btn-circle rotate-90">❯</a>
+                            <a href="#slide1" className="btn btn-circle -rotate-90">❯</a>
+                            <a href="#slide3" className="btn btn-circle rotate-90">❯</a>
                         </div>
                     </div>
 
                     {/* Slide 3 */}
-                    <div className="carousel-item relative w-full" id="slide4">
+                    <div className="carousel-item relative w-full" id="slide3">
                         <img
                             src='../../../src/images/language-composition-with-flat-design_23-2147897413.avif'
                             className="w-full h-96 object-cover"
-                            alt="Slide 4"
+                            alt="Slide 3"
                         />
                         <div
                             className="absolute top-5 bottom-5 left-1/2 flex -translate-x-1/2 transform flex-col justify-between z-20">
-                            <a href="#slide3" className="btn btn-circle -rotate-90">❯</a>
-                            <a href="#slide1" className="btn btn-circle rotate-90">❯</a>
+                            <a href="#slide2" className="btn btn-circle -rotate-90">❯</a>
+                            <a href="#slide4" className="btn btn-circle rotate-90">❯</a>
                         </div>
                     </div>
                     {/* Slide 4 */}
 
                     <div className="carousel-item relative w-full" id="slide4">
                         <img
-                            src='../../../src/images/language-composition-with-flat-design_23-2147897413.avif'
+                            src='../../../src/images/pixelcut-export.jpeg'
                             className="w-full h-96 object-cover"
                             alt="Slide 4"
                         />
+                        <div
+                            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-green-500">
+                            <h1 className='text-3xl font-bold'>Lets start learning today</h1>
+                            <Link to='/start_learning' className='btn btn-success text-bold ml-28'>Start Learning</Link>
+
+                        </div>
                         <div
                             className="absolute top-5 bottom-5 left-1/2 flex -translate-x-1/2 transform flex-col justify-between z-20">
                             <a href="#slide3" className="btn btn-circle -rotate-90">❯</a>
@@ -187,6 +198,26 @@ const Home = () => {
                     </div>
                 </div>
             </div >
+            {/* About Our mission */}
+            <div className="hero bg-green-300 min-h-screen">
+                <div className="hero-content flex-col lg:flex-row">
+                    <img
+                        src="../../../src/images/mission.png"
+                        className="max-w-2xl rounded-lg shadow-2xl" />
+                    <div>
+                        <h1 className="text-5xl font-bold">About Our Mission!</h1>
+                        <p className="py-6">
+                            Lingo Bingo is dedicated to making Japanese language learning fun, simple, and effective. We aim to help you build confidence in speaking, reading, and understanding Japanese through engaging tools and resources. Master Japanese vocabulary with interactive flashcards, daily quizzes, and practice exercises that focus on real-life usage. Explore themed word lists and pronunciation tools to enhance your learning experience. Let’s make learning Japanese an exciting journey together!
+                        </p>
+                        <button className="btn btn-success">Get Started</button>
+                    </div>
+                </div>
+            </div>
+            {/* Success Section */}
+            <SuccessSection></SuccessSection>
+            {/* 2 extra section */}
+            <WhyChooseUs></WhyChooseUs>
+            <LearnersReview></LearnersReview>
         </>
     );
 };
