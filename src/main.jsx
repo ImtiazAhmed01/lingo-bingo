@@ -80,8 +80,9 @@ import AboutUs from './Components/About Us/AboutUs';
 import Root from './Components/Root';
 import AuthProvider from './Components/Provider/authProvider';
 import MyProfile from './Components/MyProfile';
-import LetsLearn from './Components/LearningAll/Lessons';
+// import LetsLearn from './Components/LearningAll/Lessons';
 import Lessons from './Components/LearningAll/Lessons';
+import PrivateRoute from './Components/PrivateRoute';
 
 
 const router = createBrowserRouter([
@@ -109,10 +110,10 @@ const router = createBrowserRouter([
         path: "tutorials",
         element: <Tutorials1 />,
       },
-      {
-        path: "lessons",
-        element: <Lessons></Lessons>,
-      },
+      // {
+      //   path: "lessons",
+      //   element: <Lessons></Lessons>,
+      // },
       {
         path: "aboutus",
         element: <AboutUs />,
@@ -120,7 +121,19 @@ const router = createBrowserRouter([
       {
         path: '/myprofile',
         element: <MyProfile></MyProfile>
+      },
+      {
+        path: "lessons",
+        element: <PrivateRoute><Lessons /></PrivateRoute>,
+        loader: async () => {
+          const response = await fetch("/Language.json");
+          if (!response.ok) {
+            throw new Error("Failed to load lessons data");
+          }
+          return response.json(); // Pass data to the component
+        }
       }
+
     ],
   },
 ]);
