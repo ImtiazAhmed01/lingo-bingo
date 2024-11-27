@@ -5,22 +5,30 @@ import { AuthContext } from '../Provider/authProvider';
 const Login = () => {
     const { signInUser } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState(""); // Initialize error state
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email, password);
-        signInUser(email, password)
-            .then(result => {
-                console.log(result.user);
 
-                navigate('/');
-            })
-            .catch(error => {
-                console.log('ERROR', error.message);
-            });
+        setError("");
+
+        try {
+            await signInUser(email, password);
+            navigate('/');
+        } catch (err) {
+            if (err.code === 'auth/wrong-password') {
+                setError('Entered wrong password');
+            } else if (err.code === 'auth/user-not-found') {
+                setError('User not found');
+            } else if (err.code === 'auth/invalid-email') {
+                setError('Invalid email address');
+            } else {
+                setError('An unexpected error occurred. Please check your password');
+            }
+        }
     };
 
     const togglePasswordVisibility = () => {
@@ -54,7 +62,7 @@ const Login = () => {
                                 </label>
                                 <div className="relative">
                                     <input
-                                        type={showPassword ? "text" : "password"}
+                                        type={showPassword ? 'text' : 'password'}
                                         placeholder="password"
                                         name="password"
                                         className="input input-bordered w-full pr-10"
@@ -74,18 +82,18 @@ const Login = () => {
                                             strokeLinejoin="round"
                                             d={
                                                 showPassword
-                                                    ? "M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
-                                                    : "M15 12c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z M2 12s2.75-5.5 10-5.5S22 12 22 12s-2.75 5.5-10 5.5S2 12 2 12z"
+                                                    ? 'M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88'
+                                                    : 'M15 12c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z M2 12s2.75-5.5 10-5.5S22 12 22 12s-2.75 5.5-10 5.5S2 12 2 12z'
                                             }
                                         />
                                     </svg>
                                 </div>
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">
-                                        Forgot password?
-                                    </a>
-                                </label>
                             </div>
+                            {error && (
+                                <div className="text-red-500 text-sm font-bold mt-2">
+                                    {error}
+                                </div>
+                            )}
                             <div className="form-control mt-6">
                                 <button type="submit" className="btn btn-success">
                                     Login

@@ -1,28 +1,59 @@
-import React, { useContext } from 'react';
-import { AuthContext } from './Provider/authProvider';
+import React, { useContext } from "react";
+import { AuthContext } from "./Provider/authProvider";
+import { useNavigate } from "react-router-dom";
 
 const MyProfile = () => {
     const { user } = useContext(AuthContext);
-    const defaultAvatar = "https://via.placeholder.com/150"; // Placeholder image URL
+    const navigate = useNavigate();
+
+    if (!user) {
+        return <div>Loading...</div>;
+    }
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">My Profile</h1>
-            {user ? (
-                <div className="bg-white p-4 shadow rounded">
-                    <img
-                        src={user.photoURL || defaultAvatar}
-                        alt="Profile"
-                        className="w-24 h-24 rounded-full mb-4"
-                    />
-                    <p><strong>Name:</strong> {user.displayName || "N/A"}</p>
-                    <p><strong>Email:</strong> {user.email}</p>
-                </div>
-            ) : (
-                <p>No user information available.</p>
-            )}
+        <div className="profile-container px-32">
+            <h2>Welcome, {user.displayName || "User "}!</h2>
+            <img
+                src={user.photoURL}
+                alt="User  Profile"
+                className="profile-image"
+                style={{ width: "150px", height: "150px", borderRadius: "50%" }}
+            />
+            <p><strong>Email:</strong> {user.email}</p>
+            <p><strong>First Name:</strong> {user.firstName}</p>  {/* Display first name */}
+            <p><strong>Last Name:</strong> {user.lastName}</p>    {/* Display last name */}
+            <button
+                onClick={() => navigate("/update-profile")}
+                className="btn btn-outline btn-success my-5 ml-96 px-12"
+            >
+                Update Profile
+            </button>
         </div>
     );
 };
-
 export default MyProfile;
+
+
+
+// import React, { useContext } from 'react';
+// import { AuthContext } from './Provider/authProvider';
+// // import { AuthContext } from '../Provider/authProvider';
+// AuthContext
+
+// const MyProfile = () => {
+//     const { user } = useContext(AuthContext); // Get the current user from context
+
+//     return (
+//         <div>
+//             <h2>Welcome, {user?.displayName || "User"}!</h2>
+//             <img
+//                 src={user?.photoURL || "default-avatar.png"} // Fallback to default if photoURL is not set
+//                 alt="User Profile"
+//                 className="profile-image"
+//                 style={{ width: "150px", height: "150px", borderRadius: "50%" }}
+//             />
+//         </div>
+//     );
+// };
+
+// export default MyProfile;

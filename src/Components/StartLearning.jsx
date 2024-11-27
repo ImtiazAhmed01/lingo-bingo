@@ -7,7 +7,7 @@ const StartLearning = () => {
         <div>
 
             <h1 className="text-7xl px-32">Start your learning with us!</h1>
-            <div className='my-14 mx-32'>
+            <div className='my-14 mx-8 lg:mx-32'>
                 <h1 className="text-3xl font-bold">Lessons</h1>
                 <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8'>
                     {/* Card 1 */}
@@ -74,8 +74,7 @@ const StartLearning = () => {
                             </div>
                         </Link>
                     </div>
-                </div>
-                <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 my-5'>
+
                     {/* Card 1 */}
                     <div className="card bg-base-100 w-96 shadow-xl"
                     >
@@ -141,8 +140,7 @@ const StartLearning = () => {
                             </div>
                         </Link>
                     </div>
-                </div>
-                <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 my-5'>
+
                     {/* Card 1 */}
                     <div className="card bg-base-100 w-96 shadow-xl"
                     >
@@ -231,7 +229,7 @@ const StartLearning = () => {
             </div>
             <div className='px-32'>
                 <h1 className="text-3xl font-bold">Tutorials</h1>
-                <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 my-5'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-5'>
                     <div className="card bg-base-100 w-full shadow-xl">
                         <figure>
                             <iframe width="560" height="315" src="https://www.youtube.com/embed/rGrBHiuPlT0?si=B5cY_YqxmPbq3ZkZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

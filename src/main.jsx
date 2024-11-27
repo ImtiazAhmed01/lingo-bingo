@@ -83,6 +83,7 @@ import MyProfile from './Components/MyProfile';
 // import LetsLearn from './Components/LearningAll/Lessons';
 import Lessons from './Components/LearningAll/Lessons';
 import PrivateRoute from './Components/PrivateRoute';
+import UpdateProfile from './Components/UpdateProfile';
 
 
 const router = createBrowserRouter([
@@ -120,7 +121,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/myprofile',
-        element: <MyProfile></MyProfile>
+        element: <PrivateRoute><MyProfile /></PrivateRoute>,
+      },
+      {
+        path: '/update-profile',
+        element: <PrivateRoute><UpdateProfile /></PrivateRoute>,
       },
       {
         path: "lessons",

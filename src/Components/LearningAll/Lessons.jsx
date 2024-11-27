@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 
 const Lessons = () => {
     const vocabularies = useLoaderData();
-
+    const [selectedVocab, setSelectedVocab] = useState(null);
 
     document.title = `Lesson ${vocabularies.length} - Lingo Bingo`;
 
@@ -45,9 +45,8 @@ const Lessons = () => {
                                 className="btn btn-primary mt-2"
                                 onClick={() => {
                                     speakWord(vocab.word);
-                                    alert(
-                                        `Word: ${vocab.word}\nMeaning: ${vocab.meaning}\nWhen to say: ${vocab.when_to_say}\nExample: ${vocab.example}`
-                                    );
+                                    setSelectedVocab(vocab);
+                                    document.getElementById('vocab_modal').showModal();
                                 }}
                             >
                                 When to Say
@@ -58,6 +57,31 @@ const Lessons = () => {
                     <p>No vocabularies found.</p>
                 )}
             </div>
+            {/* <div className="flex justify-center items-center my-5">
+                <Link to='/start_learning'>
+                    <button className="btn btn-outline btn-success">Back to Lesson</button>
+                </Link>
+            </div> */}
+
+            {/* Modal Structure */}
+            <dialog id="vocab_modal" className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box bg-green-300">
+                    {selectedVocab && (
+                        <>
+                            <h3 className="font-bold text-lg">Details for {selectedVocab.word}</h3>
+                            <p className="py-2"><strong>Word:</strong> {selectedVocab.word}</p>
+                            <p className="py-2"><strong>Meaning:</strong> {selectedVocab.meaning}</p>
+                            <p className="py-2"><strong>When to Say:</strong> {selectedVocab.when_to_say}</p>
+                            <p className="py-2"><strong>Example:</strong> {selectedVocab.example}</p>
+                        </>
+                    )}
+                    <div className="modal-action">
+                        <form method="dialog">
+                            <button className="btn btn-outline btn-success">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
             <div className="flex justify-center items-center my-5">
                 <Link to='/start_learning'>
                     <button className="btn btn-outline btn-success">Back to Lesson</button>

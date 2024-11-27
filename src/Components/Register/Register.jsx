@@ -13,12 +13,15 @@ const Register = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         const imageURL = e.target.imageURL.value;
-        console.log(email, password, fname, lname, imageURL);
 
-        createUser(email, password, { displayName: `${fname} ${lname}`, photoURL: imageURL })
+        createUser(email, password, {
+            displayName: `${fname} ${lname}`,
+            photoURL: imageURL,
+            firstName: fname,  // Pass first name
+            lastName: lname     // Pass last name
+        })
             .then(result => {
                 console.log(result.user);
-                // Redirect to homepage after successful registration
                 navigate('/');
             })
             .catch(error => {
@@ -110,7 +113,7 @@ const Register = () => {
                         </h3>
                     </div>
                 </div>
-                <button className="btn btn-outline btn-success">Register Now</button>
+                <Link to="/"><button className="btn btn-outline btn-success">Register Now</button></Link>
             </form>
         </div>
     );
