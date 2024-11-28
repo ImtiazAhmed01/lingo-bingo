@@ -5,7 +5,7 @@ const Tutorials = () => {
     document.title = `Tutorials - Lingo Bingo`;
     return (
         <div>
-            <h1 className="text-5xl text-center my-4 font-bold">Welcomme to the tutorials</h1>
+            <h1 className="text-5xl text-center my-4 font-bold">Welcome to the tutorials</h1>
             <p className='text-xl text-center font-semibold mb-8'>Here we provide you with some of the most effective video tutorials</p>
             <div className='px-8 lg:px-32'>
                 <h3 className="text-3xl font-bold">Our video tutorials</h3>

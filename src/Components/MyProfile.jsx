@@ -1,59 +1,42 @@
-import React, { useContext } from "react";
-import { AuthContext } from "./Provider/authProvider";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 const MyProfile = () => {
-    const { user } = useContext(AuthContext);
-    const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+    document.title = 'User profile - Lingo Bingo';
+
+
+    useEffect(() => {
+
+        const userData = JSON.parse(localStorage.getItem("userProfile"));
+        setUser(userData);
+    }, []);
 
     if (!user) {
         return <div>Loading...</div>;
     }
 
     return (
-        <div className="profile-container px-32">
-            <h2>Welcome, {user.displayName || "User "}!</h2>
-            <img
-                src={user.photoURL}
-                alt="User  Profile"
-                className="profile-image"
-                style={{ width: "150px", height: "150px", borderRadius: "50%" }}
-            />
-            <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>First Name:</strong> {user.firstName}</p>  {/* Display first name */}
-            <p><strong>Last Name:</strong> {user.lastName}</p>    {/* Display last name */}
-            <button
-                onClick={() => navigate("/update-profile")}
-                className="btn btn-outline btn-success my-5 ml-96 px-12"
-            >
-                Update Profile
-            </button>
+        <div className="profile-container px-32 bg-green-200">
+            <div className="flex gap-10 py-10">
+                <div>
+                    <h2>Welcome, {user.displayName || "User"}!</h2>
+                    <img
+                        src={user.photoURL}
+                        alt="User Profile"
+                        className="profile-image mt-10"
+                        style={{ width: "200px", height: "200px", borderRadius: "50%" }}
+                    />
+                </div>
+
+                <div className="py-14 ">
+                    <p className="py-3 text-xl"><strong>Email:</strong> {user.email}</p>
+                    <p className="py-3 text-xl"><strong>First Name:</strong> {user.fname || "N/A"}</p>
+                    <p className="py-3 text-xl"><strong>Last Name:</strong> {user.lname || "N/A"}</p>
+                </div>
+            </div>
+
         </div>
     );
 };
+
 export default MyProfile;
-
-
-
-// import React, { useContext } from 'react';
-// import { AuthContext } from './Provider/authProvider';
-// // import { AuthContext } from '../Provider/authProvider';
-// AuthContext
-
-// const MyProfile = () => {
-//     const { user } = useContext(AuthContext); // Get the current user from context
-
-//     return (
-//         <div>
-//             <h2>Welcome, {user?.displayName || "User"}!</h2>
-//             <img
-//                 src={user?.photoURL || "default-avatar.png"} // Fallback to default if photoURL is not set
-//                 alt="User Profile"
-//                 className="profile-image"
-//                 style={{ width: "150px", height: "150px", borderRadius: "50%" }}
-//             />
-//         </div>
-//     );
-// };
-
-// export default MyProfile;
