@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/authProvider';
-import { ToastContainer, toast } from 'react-toastify'; // Import Toastify
+import { ToastContainer, toast, Bounce } from 'react-toastify'; // Import Toastify
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 
 const Login = () => {
@@ -28,7 +28,7 @@ const Login = () => {
             await signInUser(email, password);
             navigate('/');
         } catch (err) {
-            // Show toast error for wrong password or other login issues
+
             toast.error('Wrong password. Try again!', {
                 position: "top-center",
                 autoClose: 5000,
@@ -38,7 +38,7 @@ const Login = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                transition: "bounce", // Define transition as Bounce
+                transition: Bounce,
             });
         }
     };
@@ -125,7 +125,7 @@ const Login = () => {
                 </form>
             </div>
 
-            {/* ToastContainer for global toast notifications */}
+
             <ToastContainer
                 position="top-center"
                 autoClose={5000}

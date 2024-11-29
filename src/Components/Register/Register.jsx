@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { AuthContext } from "../Provider/authProvider";
-import { toast, ToastContainer } from "react-toastify"; // Importing Toastify
+import { toast, ToastContainer, Bounce } from "react-toastify"; // Importing Toastify
 import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
 
 const Register = () => {
@@ -27,9 +27,9 @@ const Register = () => {
         const password = e.target.password.value;
         const imageURL = e.target.imageURL.value;
 
-        // Check if password length is less than 6 characters
+
         if (password.length < 6) {
-            toast.error("Password must be at least 6 characters long!", {
+            toast.error('Password too short! Minimum length 6', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -38,9 +38,9 @@ const Register = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                transition: "bounce",
-            });
-            return; // Stop the form submission if password is too short
+                transition: Bounce,
+            })
+
         }
 
         try {
@@ -53,7 +53,7 @@ const Register = () => {
                 photoURL: imageURL,
             });
 
-            // Save user profile in localStorage with fname and lname
+
             localStorage.setItem(
                 "userProfile",
                 JSON.stringify({
@@ -67,8 +67,12 @@ const Register = () => {
 
             console.log("User created:", user);
             navigate("/");
+
+
+
         } catch (error) {
             console.error("Error creating user:", error.message);
+
         }
     };
 
