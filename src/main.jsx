@@ -22,12 +22,14 @@ import Lessons from './Components/LearningAll/Lessons';
 import PrivateRoute from './Components/PrivateRoute';
 import UpdateProfile from './Components/UpdateProfile';
 import ForgotPassword from './Components/Login/ForgotPassword';
+import ErrorPage from './Components/ErrorPage';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
