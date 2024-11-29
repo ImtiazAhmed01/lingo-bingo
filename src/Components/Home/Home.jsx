@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import 'animate.css';  // Importing Animate.css for animations
+import 'animate.css';
 
 import SuccessSection from './SuccessSection';
 import WhyChooseUs from './WhyChooseUs';

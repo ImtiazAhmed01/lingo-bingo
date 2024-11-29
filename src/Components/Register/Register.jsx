@@ -2,17 +2,17 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { AuthContext } from "../Provider/authProvider";
-import { toast, ToastContainer, Bounce } from "react-toastify"; // Importing Toastify
-import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
+import { toast, ToastContainer, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
-    const { signInWithGoogle } = useContext(AuthContext); // Access context
+    const { signInWithGoogle } = useContext(AuthContext);
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
 
     const handleGoogleSignIn = async () => {
         try {
-            await signInWithGoogle(); // Use context method
+            await signInWithGoogle();
             navigate("/");
         } catch (error) {
             console.error("Google login failed:", error.message);

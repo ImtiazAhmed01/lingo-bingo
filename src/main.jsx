@@ -17,7 +17,6 @@ import AboutUs from './Components/About Us/AboutUs';
 import Root from './Components/Root';
 import AuthProvider from './Components/Provider/authProvider';
 import MyProfile from './Components/MyProfile';
-// import LetsLearn from './Components/LearningAll/Lessons';
 import Lessons from './Components/LearningAll/Lessons';
 import PrivateRoute from './Components/PrivateRoute';
 import UpdateProfile from './Components/UpdateProfile';
@@ -51,10 +50,6 @@ const router = createBrowserRouter([
         path: "tutorials",
         element: <Tutorials1 />,
       },
-      // {
-      //   path: "lessons",
-      //   element: <Lessons></Lessons>,
-      // },
       {
         path: "aboutus",
         element: <AboutUs />,

@@ -9,7 +9,7 @@ const ForgotPassword = () => {
 
     const handleResetPassword = () => {
         alert('A reset password link will be sent to your email.');
-        // Redirect to Gmail login page
+
         window.location.href = 'https://mail.google.com/';
     };
 
