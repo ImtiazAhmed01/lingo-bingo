@@ -1,27 +1,27 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "./Provider/authProvider";
 
 
 const UpdateProfile = () => {
-    const storedUser = JSON.parse(localStorage.getItem("userProfile")) || {};
-    const [firstName, setFirstName] = useState(storedUser.fname || "");
-    const [lastName, setLastName] = useState(storedUser.lname || "");
-    const [photoURL, setPhotoURL] = useState(storedUser.photoURL || "");
+    const { user, updateUserProfile } = useContext(AuthContext);
 
-    const handleUpdate = () => {
-        const updatedUser = {
-            ...storedUser,
-            fname: firstName,
-            lname: lastName,
-            photoURL,
-            displayName: `${firstName} ${lastName}`,
-        };
+    const [firstName, setFirstName] = useState(user?.displayName?.split(" ")[0] || "");
+    const [lastName, setLastName] = useState(user?.displayName?.split(" ")[1] || "");
+    const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
 
-        localStorage.setItem("userProfile", JSON.stringify(updatedUser));
+    const handleUpdate = async () => {
+        try {
+            const updatedUser = {
+                displayName: `${firstName} ${lastName}`,
+                photoURL,
+            };
 
-        document.getElementById('my_modal_5').showModal();
-
-        window.dispatchEvent(new Event("storage"));
+            await updateUserProfile(updatedUser);
+            document.getElementById("my_modal_5").showModal();
+        } catch (error) {
+            console.error("Failed to update profile:", error);
+        }
     };
 
     return (
@@ -56,7 +56,6 @@ const UpdateProfile = () => {
                     onChange={(e) => setPhotoURL(e.target.value)}
                     placeholder="Enter photo URL"
                 />
-
                 {photoURL && (
                     <img
                         src={photoURL}
@@ -65,15 +64,17 @@ const UpdateProfile = () => {
                     />
                 )}
             </div>
-            <button onClick={handleUpdate} className="btn btn-outline btn-success mt-5">Save Update</button>
+            <button onClick={handleUpdate} className="btn btn-outline btn-success mt-5">
+                Save Update
+            </button>
             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Profile Updated!</h3>
                     <p className="py-4">Your profile has been updated successfully.</p>
                     <div className="modal-action">
-                        <form method="dialog">
-                            <ul className="border-1 btn btn-success"><Link to='/myprofile'>Got to Profile</Link></ul>
-                        </form>
+                        <button className="btn btn-success">
+                            <Link to="/myprofile">Go to Profile</Link>
+                        </button>
                     </div>
                 </div>
             </dialog>

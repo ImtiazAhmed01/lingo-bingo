@@ -13,9 +13,15 @@ const Login = () => {
     const handleGoogleSignIn = async () => {
         try {
             await signInWithGoogle();
-            navigate("/");
+            navigate("/"); // Redirects to home on successful Google login
         } catch (error) {
             console.error("Google login failed:", error.message);
+            toast.error('Google login failed. Please try again.', {
+                position: "top-center",
+                autoClose: 5000,
+                theme: "light",
+                transition: Bounce,
+            });
         }
     };
 
@@ -24,24 +30,43 @@ const Login = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        try {
-            await signInUser(email, password);
-            navigate('/');
-        } catch (err) {
-
-            toast.error('Wrong password. Try again!', {
+        if (!email || !password) {
+            toast.error('Please enter both email and password.', {
                 position: "top-center",
                 autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+            return;
+        }
+
+        try {
+            // Await the user sign-in process
+            const userCredential = await signInUser(email, password);
+            const user = userCredential.user;
+
+            if (user) {
+                // Redirect to the home page upon successful login
+                navigate('/');
+                toast.success('Login successful!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    theme: "light",
+                    transition: Bounce,
+                });
+            }
+        } catch (error) {
+            console.error("Login failed:", error.message);
+            toast.error('Invalid email or password. Please try again.', {
+                position: "top-center",
+                autoClose: 5000,
                 theme: "light",
                 transition: Bounce,
             });
         }
     };
+
+
 
     const togglePasswordVisibility = () => {
         setShowPassword((prevState) => !prevState);
@@ -62,6 +87,7 @@ const Login = () => {
                             placeholder="email"
                             name="email"
                             className="input input-bordered"
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                     </div>
@@ -115,7 +141,9 @@ const Login = () => {
                     </div>
                     <div className="mt-3">
                         <hr />
-                        <button onClick={handleGoogleSignIn} className="btn mt-5 btn-ghost">Login with Google</button>
+                        <button onClick={handleGoogleSignIn} className="btn mt-5 btn-ghost">
+                            Login with Google
+                        </button>
                     </div>
                     <div className="form-control mt-6">
                         <h3 className="text-xl">
@@ -124,7 +152,6 @@ const Login = () => {
                     </div>
                 </form>
             </div>
-
 
             <ToastContainer
                 position="top-center"
