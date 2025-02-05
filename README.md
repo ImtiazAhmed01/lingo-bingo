@@ -6,7 +6,7 @@ Welcome to Lingo Bingo, a single-page web application designed to enhance vocabu
 
 The main goal of Lingo Bingo is to provide an engaging, user-friendly platform for learning Japanese vocabulary. The application offers lessons, tutorials, and vocabulary cards, making the language learning experience interactive and enjoyable.
 
-##Project overview
+## Project overview
 Lingo Bingo is a dynamic single-page web application designed to support Japanese language learners in expanding their vocabulary through an engaging and interactive experience. The platform provides structured lessons, vocabulary flashcards, and embedded video tutorials to aid in learning. Users can navigate seamlessly through different sections, including tutorials, lessons, and vocabulary challenges.
 
 The application also features authentication using Firebase, allowing users to log in via email/password or Google authentication. Logged-in users receive a personalized experience with a welcome message displaying their name and profile picture. The homepage includes a visual slider showcasing language elements, while an animated success counter (powered by React CountUp) adds motivation by tracking learning milestones.
