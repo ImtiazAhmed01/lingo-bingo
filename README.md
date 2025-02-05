@@ -63,6 +63,13 @@ With an intuitive user interface, smooth animations, and a responsive design, Li
 2. Install dependencies:
 
    ```sh
+   npm i react-router-dom
+   ```
+   ```sh
+   npm i react-toastify
+   ```
+
+   ```sh
    npm install
    ```
 
