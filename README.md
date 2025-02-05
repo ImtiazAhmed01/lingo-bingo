@@ -42,6 +42,95 @@ With an intuitive user interface, smooth animations, and a responsive design, Li
 **React CountUp.**
 **AOS.** 
 
+## Technologies used
+- React.js
+- React-router-dom 
+- Firebase: Authentication and data handling.
+- React Router.
+- React Toastify. 
+- React CountUp.
+
+## 🛠 Installation
+
+1. Clone the repository:
+
+   ```sh
+   git clone https://github.com/yourusername/lingo-bingo.git
+   cd lingo-bingo
+   ```
+
+2. Install dependencies:
+
+   ```sh
+   npm install
+   ```
+
+3. Create a `.env` file in the root directory and add your Firebase credentials:
+
+   ```env
+   VITE_apiKey=YOUR_API_KEY
+   VITE_authDomain=YOUR_AUTH_DOMAIN
+   VITE_projectId=YOUR_PROJECT_ID
+   VITE_storageBucket=YOUR_STORAGE_BUCKET
+   VITE_messagingSenderId=YOUR_MESSAGING_SENDER_ID
+   VITE_appId=YOUR_APP_ID
+   VITE_measurementId=YOUR_MEASUREMENT_ID
+   ```
+
+4. Start the development server:
+
+   ```sh
+   npm run dev
+   ```
+
+---
+
+## 🎮 Usage
+
+- Navigate through different sections like **Tutorials, Lessons, and Vocabulary Challenges**.
+- Log in using **Email/Google authentication** to track progress.
+- Use **flashcards and video lessons** for learning.
+- Monitor your achievements with the **React CountUp** success counter.
+
+---
+
+## ⚙️ Configuration
+
+Lingo Bingo uses **Vite** for frontend development and **Firebase** for authentication and backend functionalities. Modify the `.env` file to configure your Firebase project.
+
+---
+
+## 📦 Dependencies
+
+
+
+## 🛠 Development
+
+### Running Locally
+```sh
+npm run dev
+```
+
+### Building for Production
+```sh
+npm run build
+```
+
+### Linting Code
+```sh
+npm run lint
+```
+
+---
+
+## 🤝 Contributors
+
+- **Your Name** – [GitHub](https://github.com/yourusername)
+
+Want to contribute? Feel free to submit a pull request!
+
+---
+
 
 ## Live link
 
