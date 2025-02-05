@@ -1,3 +1,4 @@
+![Lingo Bingo Screenshot](https://i.ibb.co.com/DPJzQCYn/Screenshot-41.png)
 
 # Lingo-Bingo
 
